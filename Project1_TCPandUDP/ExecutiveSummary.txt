@@ -1,0 +1,38 @@
+Name - Mahvash Maghrabi
+CS6650 - Building Scalable Distributed Systems
+Project 1 : Single Server, Key-Value Store (TCP and UDP)
+
+Assignment Overview
+This project is based on the concept of TCP and UDP. There are four classes in the project folder.
+Two are for TCP server and client while the other two are for UDP server and client.
+The user is asked to enter the port and the hostname. In this case as the program is running on the local machine the hostname
+can be localhost and the port number can be anything in the range of 0 to 65535. There is a method which checks the
+validity of the port number in both the server and client side of the code.
+The TCP server and client are communicating with each other using TCP sockets. Whereas, the UDP server and client are
+communicating with each other via datapackets. Both the TCP and UDP are responsible for performing three basic
+operations and atleast five of each that will serve as key, value store. The (key,value) pairs are stored in a hashmap
+from where they can be retrieved(GET request), can be removed (DELETE request) and values can also be added to the
+hashmap(PUT request). The hashmap is already prepopulate with three values. So that the user can retrieve them when
+the program is started. The pre-populated key value pairs are names of fruits (("1", "apple"),("2", "orange"),("3", "grapes")).
+The program is designed as such that whenever any request gets fulfilled or if there is delay in getting a response
+from the server it is printed in the client log which here is the command line interface and all the client log is
+time-stamped with the current system time that maintains millisecond precision. The sever runs until the user
+enters exit or until all the 5 PUT, 5 GET AND 5 DELETE requests have been fulfilled and no other request can be made.
+
+
+Technical Impression
+Overall the project was a great learning experience for me. I got to better understand the working and the
+functionality of both TCP/ UDP client and servers. My concept of TCP was pretty clear from the homeworks but I had to
+understand more about the working of UDP servers which I got to learn from this project. I wanted to implement one class
+for TCP and UDP Client and one class for TCP and UDP server. My design was such that the user will enter whether they
+want to interact with TCP or UDP but unfortunately that design didn't work out for me as the UDP server went
+unresponsive and timed out everytime. I then shifted to two different components of classes for TCP and UDP.
+This design worked well and fine for me and gave me th expected results. I will work more on this project to figure out
+why my prior design did not give the expected results. I did face some issues for making the client enter five of each
+requests but I was able to figure out what went wrong and solve it. The TCP server and client code worked very well for
+me. I had spent most of the time debugging and understanding the UDP server and client code. All in all the project
+gave a very clear understanding of transmission control protocol and user data protocol and clear the concepts when TCP
+is preferred for communication and when UDP is preferred.UDP is not reliable in terms of data transmission but it is
+very good in terms of speed whereas TCP on the other hand is very reliable for data transmission. Testing the code
+consumed a lot of time as I had to enter 5 PUT request, 5 GET request and 5 DELETE request everytime to check the
+working of the entire code.

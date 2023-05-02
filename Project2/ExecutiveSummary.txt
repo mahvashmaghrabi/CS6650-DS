@@ -1,0 +1,48 @@
+Name - Mahvash Maghrabi
+CS6650 - Building Scalable Distributed Systems
+Project 2 : Multi-threaded Key-Value Store using RPC
+
+Assignment Overview
+This project is based on the concept of Remote Procedure Call (RPC) . There are four classes in the project folder.
+Server - The server needs to be started first. As the server starts it asks the user to enter the RMI registry port
+number and then it asks the user to enter the socket port number. It provides a remote object using RMI
+to perform all the key-value store operations. It then registers the remote object with the RMI registry using
+Naming.rebind().
+Client - The next class that should be run after the Server class is the client class. The client asks the user to enter
+the port number. It communicates through RMI. The client program allows the user to perform operations like
+PUT, GET, DELETE to add, GET or delete any key-value pairs.
+KeyValueInt - This is an interface which extends the Remote interface. It specifies the three methods that can be called
+remotely. The put method which takes the key value pair, the get method which retrieves the value when the key is given,
+the delete method which deletes the mentioned key along with it's value.
+IntImplement - This class is an implementation of the KeyValueInt Interface. This class extends the UnicastRemoteObject
+class this allows the object to be registered with the RMI registry for remote invocation.
+Also it implements the KeyValueInt interface and provides implementation for the three methods put, get and delete. It
+also uses locking to synchronize access to shared data in a multi-threaded environment. The put method acquires a write
+lock. The get method acquires a read lock and the delete method acquires a write lock.
+As the user is asked to enter the port and the hostname. There is a method which checks the
+validity of the port number in both the server and client side of the code. The (key,value) pairs are stored in a hashmap
+from where they can be retrieved(GET request), can be removed (DELETE request) and values can also be added to the
+hashmap(PUT request). The hashmap is already prepopulate with three values. So that the user can retrieve them when
+the program is started. The pre-populated key value pairs are names of fruits (("1", "apple"),("2", "orange"),("3", "grapes")).
+The program is designed as such that whenever any request gets fulfilled or if there is delay in getting a response
+from the server it is printed in the client log which here is the command line interface and all the client log is
+time-stamped with the current system time that maintains millisecond precision. The sever runs until the user
+enters exit or until all the 5 PUT, 5 GET AND 5 DELETE requests have been fulfilled and no other request can be made.
+
+
+Technical Impression
+Overall the project was a very good hands-on experience. I got to understand the working and the
+functionality of RPC and RMI. Although the homeworks gave insights about these topics. Doing an entire project gabe a
+more clear understanding. This project focussed on three areas mainly. That were
+RMI - Remote Method Invocation is basically a Java API that allows an object running in one Java virtual machine to
+invoke methods on an object running in another Java virtual machine across a network. It allows distributed computing.
+Multi threading - The concept of multi threading is as such that multiple threads run concurrently within
+a single program. It allows the server to handle multiple client requests at the same time
+as it creates a new thread to handle each request. Due to which the server does not have to wait for each request to
+complete before handling the next which in turn improves the performance.
+Mutual exclusion - As multiple threads are accessing the shared data store concurrently mutual exclusion is necessary
+to ensure data consistency. It basically is a mechanism which makes sure that only one thread can access a shared resource
+at a time so that there are no race conditions and the data is consistent. In this project the ReentrantReadWriteLock class
+is used for mutual exclusion it has separate locks for reading and writing. Testing the code was time-consuming
+as I had to enter all 5 PUT request, 5 GET request and 5 DELETE request everytime to check the
+working of the entire code.
